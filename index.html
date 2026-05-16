@@ -27,14 +27,14 @@
   }
 
   .widget {
-    width: 360px;
+    width: 400px;
     height: 400px;
     max-width: 100%;
     max-height: 100%;
     background: transparent;
-    border: 0.5px solid rgba(0, 0, 0, 0.07);
+    border: none;
     border-radius: 20px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
+    box-shadow: none;
     padding: 22px 24px;
     display: flex;
     flex-direction: column;
@@ -43,27 +43,33 @@
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    min-height: 96px;
+    align-items: flex-start;
   }
+  .title-block { padding-top: 2px; }
   .title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
     color: #4A4D55;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #7A7E88;
+    margin-top: 3px;
   }
   .illustration {
     flex-shrink: 0;
-    margin-right: -8px;
-    margin-top: -6px;
+    margin-right: -6px;
+    margin-top: -8px;
+    width: 130px;
+    height: 100px;
   }
 
   .field {
     display: flex;
     align-items: center;
-    background: #FAFAF8;
-    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    background: transparent;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
     border-radius: 10px;
     padding: 0 14px;
     gap: 10px;
@@ -72,7 +78,6 @@
   }
   .field:focus-within {
     border-color: #C4A56C;
-    background: #FFFFFF;
     box-shadow: 0 0 0 3px rgba(196, 165, 108, 0.12);
   }
   .input {
@@ -80,7 +85,7 @@
     background: transparent;
     outline: none;
     flex: 1;
-    padding: 13px 0;
+    padding: 11px 0;
     font-size: 14px;
     font-family: inherit;
     color: #4A4D55;
@@ -89,11 +94,11 @@
   .input::placeholder { color: #A0A4AC; }
 
   .label {
-    font-size: 11px;
+    font-size: 10px;
     color: #7A7E88;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin: 18px 0 10px;
+    margin: 14px 0 8px;
   }
 
   .grid {
@@ -102,52 +107,50 @@
     gap: 6px;
   }
   .courier {
-    background: #FAFAF8;
-    border: 0.5px solid rgba(0, 0, 0, 0.06);
+    background: transparent;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
     border-radius: 9px;
-    padding: 12px 4px 10px;
+    padding: 10px 4px 8px;
     cursor: pointer;
     transition: all 0.18s;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     font-family: inherit;
     user-select: none;
   }
   .courier:hover {
-    background: #F0F0EE;
+    border-color: rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
   }
   .courier.active {
-    background: #FFFFFF;
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent);
+    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--accent) 30%, transparent);
   }
   .dot {
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
   .courier-name {
-    font-size: 11px;
+    font-size: 10px;
     color: #4A4D55;
     font-weight: 500;
   }
 
   .link-area {
     margin-top: auto;
-    padding-top: 12px;
-    min-height: 56px;
+    padding-top: 10px;
+    min-height: 50px;
   }
   .link-card {
     display: none;
     align-items: center;
     gap: 10px;
-    background: #FAFAF8;
-    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    background: transparent;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
     border-radius: 10px;
     padding: 10px 14px;
     text-decoration: none;
@@ -157,10 +160,8 @@
   }
   .link-card.show { display: flex; }
   .link-card:hover {
-    background: #FFFFFF;
-    border-color: rgba(0, 0, 0, 0.14);
+    border-color: rgba(0, 0, 0, 0.22);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
   .link-icon { flex-shrink: 0; color: #4A4D55; }
   .link-content { flex: 1; min-width: 0; }
@@ -186,16 +187,6 @@
     transform: translate(2px, -2px);
     color: #4A4D55;
   }
-
-  .hint {
-    display: none;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: #A0A4AC;
-  }
-  .hint.show { display: flex; }
 </style>
 </head>
 <body>
@@ -227,24 +218,19 @@
 
 <div class="widget">
   <div class="header">
-    <div class="title">Śledzenie<br>paczek</div>
-    <svg class="illustration" width="130" height="105" viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg">
+    <div class="title-block">
+      <div class="title">Śledzenie paczek</div>
+      <div class="subtitle">wklej numer i wybierz kuriera</div>
+    </div>
+    <svg class="illustration" viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="80" cy="120" rx="58" ry="5" fill="#000" opacity="0.09"/>
-
       <g transform="translate(28, 42)">
-        <!-- Box faces -->
         <polygon points="0,18 0,80 62,90 62,28" fill="url(#bxF)" stroke="#6F4720" stroke-width="0.6" stroke-linejoin="round"/>
         <polygon points="0,18 22,3 86,15 62,28" fill="url(#bxT)" stroke="#6F4720" stroke-width="0.6" stroke-linejoin="round"/>
         <polygon points="62,28 86,15 86,76 62,90" fill="url(#bxS)" stroke="#553510" stroke-width="0.6" stroke-linejoin="round"/>
-
-        <!-- Top tape with OTTIMO -->
         <polygon points="8,11 80,22 72,32 0,21" fill="url(#tape)" opacity="0.95"/>
         <text x="40" y="22" font-family="'Outfit', sans-serif" font-size="4.5" fill="#7A5424" font-weight="600" letter-spacing="2" text-anchor="middle" transform="rotate(8.7 40 22)" opacity="0.75">OTTIMO</text>
-
-        <!-- Front tape (vertical, lighter) -->
         <polygon points="24,18 36,20 34,82 22,80" fill="url(#tape)" opacity="0.85"/>
-
-        <!-- Shipping label with barcode (front left) -->
         <rect x="4" y="42" width="16" height="20" fill="#FFFFFF" opacity="0.96" rx="0.6"/>
         <line x1="6" y1="45" x2="18" y2="45.5" stroke="#5A4A35" stroke-width="0.4"/>
         <line x1="6" y1="47" x2="16" y2="47.3" stroke="#5A4A35" stroke-width="0.3"/>
@@ -260,24 +246,16 @@
           <rect x="10.4" y="0" width="0.7" height="10"/>
           <rect x="11.6" y="0" width="1.1" height="10"/>
         </g>
-
-        <!-- DHL stamp (front right, red) -->
         <g transform="translate(40, 64) rotate(-4)">
           <rect x="0" y="0" width="18" height="9" fill="#FFFFFF" stroke="#D40511" stroke-width="0.5" rx="0.4" opacity="0.95"/>
           <text x="9" y="6.5" font-family="'Outfit', sans-serif" font-size="5" fill="#D40511" font-weight="700" text-anchor="middle">DHL</text>
         </g>
-
-        <!-- InPost stamp (side, yellow) -->
         <g transform="translate(66, 36) skewY(7)">
           <rect x="0" y="0" width="16" height="7" fill="#FFD500" stroke="#000000" stroke-width="0.4" rx="0.3" opacity="0.92"/>
           <text x="8" y="5" font-family="'Outfit', sans-serif" font-size="3.8" fill="#1A1A1A" font-weight="700" text-anchor="middle" letter-spacing="0.2">inpost</text>
         </g>
       </g>
-
-      <!-- Shadow under pin on box -->
       <ellipse cx="70" cy="55" rx="9" ry="2" fill="#000" opacity="0.18"/>
-
-      <!-- Pin GPS -->
       <g transform="translate(58, 14)">
         <path d="M 12 0 C 5 0 0 5 0 12 C 0 16 3 22 12 36 C 21 22 24 16 24 12 C 24 5 19 0 12 0 Z" fill="url(#pin)" stroke="#8E1818" stroke-width="0.4"/>
         <circle cx="12" cy="12" r="4.5" fill="#FFFFFF"/>
@@ -319,10 +297,6 @@
         <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </a>
-    <div class="hint" id="hint">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="4.5" r="0.7" fill="currentColor"/><path d="M7 7v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-      <span id="hintText">Wklej numer i wybierz kuriera</span>
-    </div>
   </div>
 </div>
 
@@ -339,8 +313,6 @@ const input = document.getElementById('num');
 const linkCard = document.getElementById('linkCard');
 const linkTitle = document.getElementById('linkTitle');
 const linkUrl = document.getElementById('linkUrl');
-const hint = document.getElementById('hint');
-const hintText = document.getElementById('hintText');
 
 let selectedCourier = null;
 
@@ -364,13 +336,8 @@ function update() {
     linkUrl.textContent = url;
     linkCard.href = url;
     linkCard.classList.add('show');
-    hint.classList.remove('show');
   } else {
     linkCard.classList.remove('show');
-    if (!num && !selectedCourier) hintText.textContent = 'Wklej numer i wybierz kuriera';
-    else if (!num) hintText.textContent = 'Wklej numer przesyłki';
-    else hintText.textContent = 'Wybierz kuriera';
-    hint.classList.add('show');
   }
 }
 
